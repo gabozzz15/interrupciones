@@ -1,4 +1,5 @@
-const API_BASE = (window.location.port === '8080' || window.location.port === '80' || window.location.port === '')
+const API_BASE = (window.location.protocol !== 'file:' &&
+  (window.location.port === '8080' || window.location.port === '80' || window.location.port === ''))
   ? window.location.origin
   : 'http://localhost:3000';
 

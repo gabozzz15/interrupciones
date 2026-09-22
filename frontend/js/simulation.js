@@ -2,9 +2,12 @@
    simulation.js — Main UI Controller
    ========================================== */
 
-// Auto-detect: if served from port 8080 (Docker/nginx) use same origin,
-// otherwise assume local dev backend on :3000
-const API_BASE_URL = (window.location.port === '8080' || window.location.port === '80' || window.location.port === '')
+// Auto-detect backend URL:
+// - file:// (abrir directo) → dev local en :3000
+// - puerto 8080/80/443 (Docker/nginx) → mismo origen
+// - cualquier otro puerto (ej: :5500 Live Server) → dev local en :3000
+const API_BASE_URL = (window.location.protocol !== 'file:' &&
+  (window.location.port === '8080' || window.location.port === '80' || window.location.port === ''))
   ? window.location.origin
   : 'http://localhost:3000';
 
